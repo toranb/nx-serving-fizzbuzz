@@ -10,12 +10,11 @@ defmodule Game.Application do
     children = [
       # Start the Telemetry supervisor
       GameWeb.Telemetry,
-      # Start the Ecto repository
-      Game.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: Game.PubSub},
       # Start Finch
       {Finch, name: Game.Finch},
+      {Nx.Serving, serving: load(), name: FizzBuzz},
       # Start the Endpoint (http/https)
       GameWeb.Endpoint
       # Start a worker by calling: Game.Worker.start_link(arg)
@@ -26,6 +25,10 @@ defmodule Game.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Game.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  def load() do
+    Game.Demo.load(compile: [batch_size: 1])
   end
 
   # Tell Phoenix to update the endpoint configuration

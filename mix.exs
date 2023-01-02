@@ -50,7 +50,11 @@ defmodule Game.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:axon, "~> 0.3"},
+      {:nx, github: "elixir-nx/nx", sparse: "nx", override: true},
+      {:exla, github: "elixir-nx/nx", sparse: "exla", override: true, only: [:dev, :test]},
+      {:bumblebee, "~> 0.1.2"}
     ]
   end
 
