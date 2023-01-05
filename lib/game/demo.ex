@@ -16,7 +16,7 @@ defmodule Game.Demo do
     end
   end
 
-  def load(opts) do
+  def train_model() do
     data =
       1..1000
       |> Stream.map(fn n ->
@@ -35,6 +35,24 @@ defmodule Game.Demo do
       |> Axon.Loop.trainer(:categorical_cross_entropy, Axon.Optimizers.adamw(0.005))
       |> Axon.Loop.metric(:accuracy)
       |> Axon.Loop.run(data, %{}, epochs: 5, compiler: EXLA)
+
+    model
+    |> Axon.serialize(params)
+    |> then(&File.write!("model.axon", &1))
+
+    {model, params}
+  end
+
+  def maybe_train_model() do
+    try do
+      File.read!("model.axon") |> Axon.deserialize()
+    rescue
+      _ -> train_model()
+    end
+  end
+
+  def load(opts) do
+    {model, params} = maybe_train_model()
 
     {_init_fn, predict_fn} = Axon.build(model)
 
