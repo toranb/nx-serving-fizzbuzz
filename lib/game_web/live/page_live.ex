@@ -5,7 +5,6 @@ defmodule GameWeb.PageLive do
     {:ok, assign(socket, task: nil, result: nil)}
   end
 
-  @impl true
   def handle_event("demo", _value, socket) do
     task =
       Task.async(fn ->

@@ -52,8 +52,8 @@ defmodule Game.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:axon, "~> 0.3"},
-      {:nx, github: "elixir-nx/nx", sparse: "nx", override: true},
-      {:exla, github: "elixir-nx/nx", sparse: "exla", override: true, only: [:dev, :test]},
+      {:exla, "~> 0.4"},
+      {:nx, "~> 0.4"},
       {:bumblebee, "~> 0.1.2"}
     ]
   end
