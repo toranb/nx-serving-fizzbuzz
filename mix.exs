@@ -51,10 +51,10 @@ defmodule Game.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:axon, "~> 0.3"},
-      {:exla, "~> 0.4"},
-      {:nx, "~> 0.4"},
-      {:bumblebee, "~> 0.1.2"}
+      {:axon, "~> 0.5.1"},
+      {:exla, "~> 0.5.2"},
+      {:nx, "~> 0.5.3"},
+      {:bumblebee, "~> 0.3.0"}
     ]
   end
 
